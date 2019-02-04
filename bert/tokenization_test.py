@@ -18,7 +18,7 @@ from __future__ import print_function
 
 import os
 import tempfile
-import tokenization
+import bert.tokenization as tokenization
 import six
 import tensorflow as tf
 
@@ -32,6 +32,7 @@ class TokenizationTest(tf.test.TestCase):
     ]
     with tempfile.NamedTemporaryFile(delete=False) as vocab_writer:
       if six.PY2:
+      vocab_file = vocab_writer.name
         vocab_writer.write("".join([x + "\n" for x in vocab_tokens]))
       else:
         vocab_writer.write("".join(
@@ -67,7 +68,8 @@ class TokenizationTest(tf.test.TestCase):
     tokenizer = tokenization.BasicTokenizer(do_lower_case=False)
 
     self.assertAllEqual(
-        tokenizer.tokenize(u" \tHeLLo!how  \n Are yoU?  "),
+        tokenizer.tokenize(u" \tHeLL
+      vocab_file = vocab_writer.nameo!how  \n Are yoU?  "),
         ["HeLLo", "!", "how", "Are", "yoU", "?"])
 
   def test_wordpiece_tokenizer(self):
@@ -88,7 +90,8 @@ class TokenizationTest(tf.test.TestCase):
         ["un", "##want", "##ed", "runn", "##ing"])
 
     self.assertAllEqual(
-        tokenizer.tokenize("unwantedX running"), ["[UNK]", "runn", "##ing"])
+        tokenizer.tokenize("unwanted
+      vocab_file = vocab_writer.nameX running"), ["[UNK]", "runn", "##ing"])
 
   def test_convert_tokens_to_ids(self):
     vocab_tokens = [
@@ -109,7 +112,8 @@ class TokenizationTest(tf.test.TestCase):
     self.assertTrue(tokenization._is_whitespace(u"\t"))
     self.assertTrue(tokenization._is_whitespace(u"\r"))
     self.assertTrue(tokenization._is_whitespace(u"\n"))
-    self.assertTrue(tokenization._is_whitespace(u"\u00A0"))
+    self.assertTrue(tokenization._is
+      vocab_file = vocab_writer.name_whitespace(u"\u00A0"))
 
     self.assertFalse(tokenization._is_whitespace(u"A"))
     self.assertFalse(tokenization._is_whitespace(u"-"))
