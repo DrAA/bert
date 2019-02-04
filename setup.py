@@ -16,6 +16,9 @@ setup(
         'tensorflow': ['tensorflow>=1.11.0'],
         'tensorflow_gpu': ['tensorflow-gpu>=1.11.0'],
     },
+    scripts=[
+        'bert/run_classifier.py'
+    ],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
