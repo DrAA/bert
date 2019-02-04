@@ -12,11 +12,9 @@ setup(
     url='http://github.com/google-research/bert',
     license='Apache 2.0',
     packages=find_packages(),
-    install_requires=[
-    ],
     extras_require={
-        'tensorflow': ['tensorflow>=1.12.0'],
-        'tensorflow_gpu': ['tensorflow-gpu>=1.12.0'],
+        'tensorflow': ['tensorflow>=1.11.0'],
+        'tensorflow_gpu': ['tensorflow-gpu>=1.11.0'],
     },
     classifiers=[
         'Development Status :: 4 - Beta',
